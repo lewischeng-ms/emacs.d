@@ -102,7 +102,8 @@ But you may use safer HTTPS instead.")
     gruvbox-theme
     hc-zenburn-theme
     hemisu-theme
-    heroku-theme)
+    heroku-theme
+    dash)
   "Don't install any Melpa packages except these packages")
 
 ;; We include the org repository for completeness, but don't use it.
@@ -111,7 +112,7 @@ But you may use safer HTTPS instead.")
 (if melpa-use-https-repo
     (setq package-archives
           '(;; uncomment below line if you need use GNU ELPA
-            ;; ("gnu" . "https://elpa.gnu.org/packages/")
+            ("gnu" . "https://elpa.gnu.org/packages/")
             ("melpa" . "https://melpa.org/packages/")
             ("melpa-stable" . "https://stable.melpa.org/packages/")))
   (setq package-archives
@@ -294,5 +295,8 @@ ARCHIVE is the string name of the package archive.")
 (require-package 'define-word)
 (require-package 'quack) ;; for scheme
 (require-package 'hydra)
+(require-package 'csharp-mode)
+(require-package 'omnisharp)
+(require-package 'projectile)
 
 (provide 'init-elpa)

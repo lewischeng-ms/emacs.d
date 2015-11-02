@@ -95,7 +95,7 @@
   (require 'init-moz)
   (require 'init-gtags)
   ;; use evil mode (vi key binding)
-  (require 'init-evil)
+  ;; (require 'init-evil)
   (require 'init-sh)
   (require 'init-ctags)
   (require 'init-bbdb)
@@ -174,3 +174,58 @@
 ;;; no-byte-compile: t
 ;;; End:
 (put 'erase-buffer 'disabled nil)
+
+;; highlight the current line.
+(global-hl-line-mode t)
+
+;; enable neotree
+(global-set-key [f8] 'neotree-toggle)
+
+;; enable projectile
+(setq projectile-indexing-method 'native)
+(projectile-global-mode t)
+(global-set-key [f5] 'projectile-find-file)
+(global-set-key [f6] 'projectile-switch-project)
+
+(when (eq system-type 'darwin)
+  ;; set default font
+  (set-default-font "Monaco-14")
+  ;; startup in full screen
+  (toggle-frame-fullscreen)
+  ;; use command as the meta key on mac
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'alt)
+  ;; set omnisharp server path
+  (setq-default omnisharp-server-executable-path "~/GitHub/omnisharp-roslyn/artifacts/publish/OmniSharp/default/netcoreapp1.0/OmniSharp"))
+
+(when (eq system-type 'windows-nt)
+  ;; set default font
+  (set-default-font "Consolas-14")
+  ;; startup in maximize window
+  (toggle-frame-maximized)
+  ;; Don't set GREP_OPTIONS to avoid warnings
+  (setq grep-highlight-matches nil)
+  ;; override find and grep program
+  (setq find-program "\"C:\\Program Files\\Git\\usr\\bin\\find.exe\"")
+  (setq grep-program "\"C:\\Program Files\\Git\\usr\\bin\\grep.exe\" --color=always")
+  ;; override curl program
+  (setq omnisharp--curl-executable-path "C:\\Program Files\\Git\\usr\\bin\\curl.exe")
+  ;; Prevent issues with the Windows null device (NUL)
+  ;; when using cygwin find with rgrep.
+  (defadvice grep-compute-defaults (around grep-compute-defaults-advice-null-device)
+    "Use cygwin's /dev/null as the null-device."
+    (let ((null-device "/dev/null"))
+      ad-do-it))
+  (ad-activate 'grep-compute-defaults))
+
+(setq-default c-basic-offset 4)
+
+(defun my-csharp-mode-hook ()
+  (c-set-offset 'inline-open '0)
+  (electric-pair-mode 1))
+
+;; setup my our C# coding style
+(add-hook 'csharp-mode-hook 'my-csharp-mode-hook)
+
+;; start emacs server to accelerate startup.
+(server-start)
