@@ -298,5 +298,6 @@ ARCHIVE is the string name of the package archive.")
 (require-package 'csharp-mode)
 (require-package 'omnisharp)
 (require-package 'projectile)
+(require-package 'powershell)
 
 (provide 'init-elpa)
