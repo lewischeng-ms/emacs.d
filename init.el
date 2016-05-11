@@ -175,6 +175,9 @@
 ;;; End:
 (put 'erase-buffer 'disabled nil)
 
+;; enable system copy-paste keys
+(cua-mode t)
+
 ;; highlight the current line.
 (global-hl-line-mode t)
 
