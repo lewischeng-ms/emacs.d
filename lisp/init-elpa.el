@@ -115,11 +115,6 @@ But you may use safer HTTPS instead.")
             ("gnu" . "https://elpa.gnu.org/packages/")
             ("melpa" . "https://melpa.org/packages/")
             ("melpa-stable" . "https://stable.melpa.org/packages/")))
-  (setq package-archives
-        '(;; uncomment below line if you need use GNU ELPA
-          ;; ("gnu" . "http://elpa.gnu.org/packages/")
-          ("melpa" . "http://melpa.org/packages/")
-          ("melpa-stable" . "http://stable.melpa.org/packages/")))
   )
 
 
